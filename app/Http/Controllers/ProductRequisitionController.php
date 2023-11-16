@@ -6,6 +6,7 @@ use App\Http\Requests\IssueStoreRequest;
 use App\Http\Requests\ProductRequisitionStoreRequest;
 use App\Http\Requests\ProductRequisitionUpdateRequest;
 use App\Http\Services\ProductRequisitionService;
+use App\Jobs\ProductRequisitionMailJob;
 use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -33,6 +34,10 @@ class ProductRequisitionController extends Controller
             $product_requisition_items = json_decode($validateData['product_requisition_items'], true);
             $productRequisitionService->productRequisitionItem($product_requisition_items, $product_requisition_create->id);
 
+            // Mail send
+//            $email = 'admin@gmail.com';
+//            ProductRequisitionMailJob::dispatch($email);
+//
             DB::commit();
             return response()->json(['success' => true, 'message' => 'Product requisition created successfully'], 201);
         } catch (\Exception $e) {
