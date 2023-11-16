@@ -23,8 +23,8 @@ class ProductSeeder extends Seeder
         $product_array = array();
 
         foreach ($products as $product) {
-            $data['name'] = $product->name;
-            $data['unit'] = $product->unit;
+            $data['name'] = $product['name'];
+            $data['unit'] = $product['unit'];
             $product_array[] = $data;
         }
 
