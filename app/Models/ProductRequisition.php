@@ -22,4 +22,9 @@ class ProductRequisition extends Model
     {
         return $this->hasMany(ProductRequisitionItem::class);
     }
+
+    public function productRequisitionItemDetails() : HasMany
+    {
+        return $this->hasMany(ProductRequisitionItemDetail::class);
+    }
 }

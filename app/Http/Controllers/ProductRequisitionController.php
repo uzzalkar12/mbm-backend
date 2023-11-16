@@ -104,6 +104,10 @@ class ProductRequisitionController extends Controller
     public function delete($product_requisition_id, ProductRequisitionService $productRequisitionService)
     {
         $product_requisition = $productRequisitionService->findById($product_requisition_id);
+
+        if ($product_requisition->productRequisitionItemDetails()->exists()){
+            return response()->json(['success' => true, 'message' => 'Product requisition deleted failed'], 404);
+        }
         $productRequisitionService->delete($product_requisition);
         return response()->json(['success' => true, 'message' => 'Product requisition deleted successfully'], 201);
     }

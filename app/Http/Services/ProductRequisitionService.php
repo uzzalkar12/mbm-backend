@@ -24,7 +24,7 @@ class ProductRequisitionService
     public function findById($product_requisition_id)
     {
         return ProductRequisition::query()
-            ->with(['productRequisitionItems.productStocks', 'productRequisitionItems.product'])
+            ->with(['productRequisitionItems.productStocks', 'productRequisitionItems.product', 'productRequisitionItemDetails'])
             ->where('id', $product_requisition_id)->first();
     }
 
